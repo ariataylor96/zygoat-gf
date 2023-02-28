@@ -10,7 +10,7 @@ _client = docker.from_env()
 _client.containers
 
 
-class Executor:
+class DockerExecutor:
     """Maintains a docker container for command execution."""
 
     client: docker.DockerClient
@@ -32,7 +32,7 @@ class Executor:
         Spawn an executor.
 
         :param image: Image tag or URI to launch
-        :param workdir: Host directory to mount into the container
+        :param workdir: Host directory to mount into the container, defaults to `os.getcwd()`
         :param client: The docker connection to use, defaults to `docker.from_env()`
         :param force_pull: Pull the image first before launching
         :param auto_start: Start the container automatically"
@@ -57,7 +57,7 @@ class Executor:
         """Starts the service."""
 
         if self.container is not None:
-            log.warning("Attempted to start an already-running container, which is a no-op")
+            log.info("Attempted to start an already-running container, which is a no-op")
             return
 
         abs_path = str(Path(self.workdir).absolute())
@@ -81,11 +81,7 @@ class Executor:
         self.container.exec_run(*args, **kwargs)
 
     def __del__(self):
-        """Destructor to ensure that the container is properly pruned when we're done with it."""
+        """Ensure that the container is properly pruned when we're done with it."""
         self.container.stop(timeout=0)
         self.container.wait()
         self.container.remove()
-
-    @property
-    def running(self):
-        return self.container is not None and self.container.status == "running"

@@ -20,11 +20,20 @@ pip install --upgrade zygoat
 
 ---
 
-## Contributing
+## Contribution guide
 
-`zygoat` is developed using the [Poetry](https://python-poetry.org/docs/) packaging framework for Python projects to make development as simple and portable as possible.
+`zygoat` is developed using the [Poetry](https://python-poetry.org/docs/) packaging framework for Python projects to make development as simple and portable as possible. Install the `development` extras group to gain access to some package scripts that make development easier. This is done like so:
 
-## Running the test suite with reload
+```bash
+poetry install --all-extras
+```
+
+Then, you can run `poetry run [cmd]`, where `cmd` is one of:
+
+- _watch_ - Runs the test suite on save
+- _docs_ - Generates [`pdoc`](https://pdoc.dev/) API documentation and serves it on `localhost:8080`
+
+### Running the test suite on save
 
 ```bash
 poetry install --all-extras

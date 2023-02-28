@@ -1,7 +1,7 @@
 import pytest
 from faker import Faker
 
-from zygoat.executors import Executor
+from zygoat.executors import DockerExecutor
 
 from click.testing import CliRunner
 
@@ -18,4 +18,4 @@ def fake():
 
 @pytest.fixture
 def py_executor(tmp_path):
-    return Executor("python", pull=True, workdir=tmp_path)
+    return DockerExecutor("python", pull=True, workdir=tmp_path)
