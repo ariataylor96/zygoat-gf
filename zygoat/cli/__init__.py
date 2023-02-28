@@ -5,9 +5,7 @@ from .new import new
 
 @click.group()
 def cli():
-    """
-    Base command group under which all others are mounted
-    """
+    """Base command group to mount subcommands under."""
 
 
 _sub_commands = [new]
