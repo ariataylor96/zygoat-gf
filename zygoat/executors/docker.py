@@ -48,6 +48,10 @@ class DockerExecutor:
         if auto_start:
             self.start()
 
+    @property
+    def absolute_workdir(self):
+        return Path(self.workdir).absolute()
+
     def pull_image(self, **kwargs):
         """Manually trigger an image pull."""
 
@@ -60,7 +64,7 @@ class DockerExecutor:
             log.info("Attempted to start an already-running container, which is a no-op")
             return
 
-        abs_path = str(Path(self.workdir).absolute())
+        abs_path = str(self.absolute_workdir)
         internal_wd = "/zygoat"
 
         self.container = self.client.containers.run(
@@ -79,6 +83,18 @@ class DockerExecutor:
         """Runs a command inside the container."""
 
         self.container.exec_run(*args, **kwargs)
+
+    def exec_all(self, *args, **kwargs):
+        """Runs a series of commands in sequence, each receiving the same kwargs."""
+
+        for arg in args:
+            self.exec(arg, **kwargs)
+
+    run = exec
+
+    def clean_perms(self):
+        """Resets the permissions of the working directory to the current UID:GID."""
+        self.exec(f"chown -R {os.getuid()}:{os.getgid()} .")
 
     def __del__(self):
         """Ensure that the container is properly pruned when we're done with it."""
