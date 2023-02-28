@@ -19,6 +19,7 @@ class DockerExecutor:
     # Stored parameters
     image: str
     workdir: str
+    attach: bool = False
 
     def __init__(
         self,
@@ -27,6 +28,7 @@ class DockerExecutor:
         client=_client,
         pull: bool = False,
         auto_start: bool = True,
+        attach: bool = False,
     ):
         """
         Spawn an executor.
@@ -36,11 +38,13 @@ class DockerExecutor:
         :param client: The docker connection to use, defaults to `docker.from_env()`
         :param force_pull: Pull the image first before launching
         :param auto_start: Start the container automatically"
+        :param attach: Print container logs when executing
         """
         self.client = client
 
         self.image = image
         self.workdir = workdir
+        self.attach = attach
 
         if pull:
             self.pull_image()
@@ -83,6 +87,9 @@ class DockerExecutor:
         """Runs a command inside the container."""
 
         self.container.exec_run(*args, **kwargs)
+
+        if self.attach:
+            self.container.logs(stream=True, follow=True)
 
     def exec_all(self, *args, **kwargs):
         """Runs a series of commands in sequence, each receiving the same kwargs."""

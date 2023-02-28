@@ -3,12 +3,10 @@ import click
 
 from loguru import logger as log
 
-from zygoat.plans import backend
+from zygoat.plans import backend, frontend
 from zygoat.utils import use_dir
 
-modules = [
-    backend,
-]
+modules = [backend, frontend]
 
 
 @click.argument("name")
