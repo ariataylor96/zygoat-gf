@@ -4,9 +4,10 @@ import os
 from zygoat.executors import DockerExecutor
 
 from .docker import inject_dockerfiles
+from .gunicorn import inject_gunicorn_conf
+
 
 BACKEND = "backend"
-executor = None
 
 
 def entrypoint():
@@ -23,3 +24,4 @@ def entrypoint():
     )
 
     inject_dockerfiles(BACKEND)
+    inject_gunicorn_conf(BACKEND)
