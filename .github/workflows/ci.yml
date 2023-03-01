@@ -1,33 +1,28 @@
+setup: &setup
+  - uses: actions/checkout@v3
+  - uses: docker-practice/actions-setup-docker@master
+    timeout-minutes: 12
+  - run: |
+      pip install --upgrade pip
+      pip install --upgrade poetry
+      poetry install --all-extras
+
 on: push
 
 name: ci
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: docker-practice/actions-setup-docker@master
-        timeout-minutes: 12
-      - run: |
-          pip install --upgrade pip
-          pip install --upgrade poetry
-          poetry install --all-extras
-
   linting:
     runs-on: ubuntu-latest
-    needs: [setup]
-    steps:
+    steps: &setup
       - run: poetry run flake8
 
   testing:
     runs-on: ubuntu-latest
-    needs: [setup]
-    steps:
+    steps: &setup
       - run: poetry run pytest -rA -m "not slow"
 
   e2e:
     runs-on: ubuntu-latest
-    needs: [setup]
-    steps:
+    steps: &setup
       - run: poetry run pytest -rA -m slow
