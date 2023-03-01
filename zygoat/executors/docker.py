@@ -20,6 +20,7 @@ class DockerExecutor:
     image: str
     workdir: str
     attach: bool = False
+    clean_perms_on_exit: bool
 
     def __init__(
         self,
@@ -29,6 +30,7 @@ class DockerExecutor:
         pull: bool = False,
         auto_start: bool = True,
         attach: bool = False,
+        clean_perms_on_exit: bool = True,
     ):
         """
         Spawn an executor.
@@ -39,12 +41,14 @@ class DockerExecutor:
         :param force_pull: Pull the image first before launching
         :param auto_start: Start the container automatically"
         :param attach: Print container logs when executing
+        :param clean_perms_on_exit: Fix project directory permissions when pruning containers
         """
         self.client = client
 
         self.image = image
         self.workdir = workdir
         self.attach = attach
+        self.clean_perms_on_exit = clean_perms_on_exit
 
         if pull:
             self.pull_image()
@@ -105,6 +109,9 @@ class DockerExecutor:
 
     def __del__(self):
         """Ensure that the container is properly pruned when we're done with it."""
+        if self.clean_perms_on_exit:
+            self.clean_perms()
+
         self.container.stop(timeout=0)
         self.container.wait()
         self.container.remove()

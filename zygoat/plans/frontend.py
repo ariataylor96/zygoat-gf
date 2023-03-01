@@ -20,6 +20,3 @@ def entrypoint():
         """pnpm create next-app --js --use-pnpm --eslint --no-experimental-app --no-src-dir --import-alias "@/*" ."""
         "pnpm create next-app --js --eslint --use-pnpm .",
     )
-
-    log.info("Changing project ownership to match current user")
-    node.clean_perms()

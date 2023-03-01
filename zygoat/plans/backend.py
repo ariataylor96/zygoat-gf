@@ -19,6 +19,3 @@ def entrypoint():
         "poetry add Django",
         "poetry run django-admin startproject backend .",
     )
-
-    log.info("Changing project ownership to match current user")
-    python.clean_perms()
