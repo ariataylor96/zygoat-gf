@@ -35,13 +35,6 @@ Then, you can run `poetry run [cmd]`, where `cmd` is one of:
 - _watch_ - Runs the test suite on save
 - _docs_ - Generates [`pdoc`](https://pdoc.dev/) API documentation and serves it on `localhost:8080`
 
-### Running the test suite on save
-
-```bash
-poetry install --all-extras
-poetry run watch
-```
-
 ---
 
 ## Documentation
