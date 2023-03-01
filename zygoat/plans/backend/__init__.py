@@ -3,6 +3,8 @@ import os
 
 from zygoat.executors import DockerExecutor
 
+from .docker import inject_dockerfiles
+
 BACKEND = "backend"
 executor = None
 
@@ -16,6 +18,8 @@ def entrypoint():
     python.exec_all(
         "pip install --upgrade pip poetry",
         "poetry init -n --name=backend",
-        "poetry add Django",
+        "poetry add Django gunicorn",
         "poetry run django-admin startproject backend .",
     )
+
+    inject_dockerfiles(BACKEND)

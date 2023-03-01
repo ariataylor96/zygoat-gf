@@ -1,0 +1,12 @@
+FROM python:latest
+
+RUN pip install -U pip
+RUN pip install -U poetry
+
+WORKDIR /code
+
+ADD pyproject.toml /code/
+ADD poetry.lock /code/
+RUN poetry install
+
+CMD poetry run ./manage.py migrate && poetry run gunicorn backend.wsgi

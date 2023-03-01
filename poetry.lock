@@ -1024,4 +1024,4 @@ development = ["watchfiles", "bpython", "pdoc"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "31fb644bce0488a1caff0a6ff176dd3c182d47fda87b894304a36ba92f0d3999"
+content-hash = "113365a80f88093a7dfbbce63e81ab891cf3693c01c8591dbc27cc1bf80d4428"
