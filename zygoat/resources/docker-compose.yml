@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile.local
+    depends_on:
+      - db
+      - cache
+    volumes:
+      - ./backend:/code
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./frontend:/code
+  cache:
+    image: redis
+  db:
+    image: postgres:11
+    environment:
+      - POSTGRES_PASSWORD=postgres
