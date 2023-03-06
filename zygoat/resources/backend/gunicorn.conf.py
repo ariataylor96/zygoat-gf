@@ -1,6 +1,6 @@
 import os
 
-bind = "0.0.0.0:{port}"
+bind = "0.0.0.0:{3000}"
 # While multiprocessing.cpu_count() would technically work, it gives us
 # the number of CPUs attached to the system and not the number we can use.
 # With core affinity being as fuzzy as it is for containerized workflows

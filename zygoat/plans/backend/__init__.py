@@ -10,7 +10,7 @@ from .gunicorn import inject_gunicorn_conf
 BACKEND = "backend"
 
 
-def entrypoint():
+def entrypoint(*args, **kwargs):
     log.info("Initializing the backend project")
     os.makedirs(BACKEND)
 

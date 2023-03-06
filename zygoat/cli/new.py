@@ -23,6 +23,12 @@ def new(name, plan):
     with use_dir(name):
         plan(name=name)
 
+    # Get a vertical break first
+    for _ in range(2):
+        print()
+
+    log.info(f"Your project {name} is ready! Happy hacking!")
+
 
 def _get_plan(import_path: str) -> Callable:
     module, attr = import_path.split(":")
@@ -31,7 +37,7 @@ def _get_plan(import_path: str) -> Callable:
     if callable(imported):
         return imported
 
-    log.info(f"{import_path} is not callable, checking for .entrypoint()")
+    log.debug(f"{import_path} is not callable, checking for .entrypoint()")
     imported = getattr(imported, "entrypoint")
 
     if imported is None or not callable(imported):

@@ -90,10 +90,10 @@ class DockerExecutor:
     def exec(self, *args, **kwargs):
         """Runs a command inside the container."""
 
-        self.container.exec_run(*args, **kwargs)
+        exit_code, output = self.container.exec_run(*args, **kwargs)
 
         if self.attach:
-            self.container.logs(stream=True, follow=True)
+            print(output.decode())
 
     def exec_all(self, *args, **kwargs):
         """Runs a series of commands in sequence, each receiving the same kwargs."""
