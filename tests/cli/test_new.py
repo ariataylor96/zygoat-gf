@@ -1,5 +1,7 @@
 import pytest
+import os
 from zygoat.cli import cli
+from subprocess import run
 
 
 @pytest.mark.slow
@@ -14,3 +16,6 @@ def test_new(click_runner, tmp_path, fake):
         )
 
         assert result.exit_code == 0
+
+        os.chdir(name)
+        run(["docker", "compose", "build"], check=True)

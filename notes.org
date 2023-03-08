@@ -1,0 +1,29 @@
+General:
+ - [ ] Abstract resource file injection into single function, DRY
+
+Backend:
+ - [ ] Add django-environ and configuration for that
+   - Probably not redbaron again? Maybe a semantic django app
+ - [ ] Setup black
+   - [ ] Reformat project
+   - [ ] Add TOML configuration
+     - Make sure it's pretty formatted
+
+Frontend:possible
+ - [ ] Clean up the generated project
+   - [ ] Remove useless API paths
+   - [ ] Default assets
+
+ - [ ] Prettier
+   - [ ] Add package scripts to reformat project
+   - [ ] .prettierrc
+ - [ ] Eslint
+   - See what the NextJS defaults are, try to customize those if possible
+ - [ ] Clean up the generated project
+   - [ ] Remove useless API paths
+   - [ ] Default assets
+
+Testing:
+ - [ ] Test building the prod images
+   - [ ] Frontend
+   - [ ] Backend
