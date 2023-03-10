@@ -1,5 +1,5 @@
 from zygoat.plans import frontend, backend
-from zygoat.utils import inject_file_contents, resource_file_contents
+from zygoat.utils import inject_resource_file
 from zygoat.executors import DockerExecutor
 
 from loguru import logger as log
@@ -22,7 +22,7 @@ def entrypoint(*args, **kwargs):
 
     for file_name in _injected_files:
         log.debug(f"Injecting {file_name}")
-        inject_file_contents(file_name, resource_file_contents(file_name))
+        inject_resource_file(file_name)
 
     git = DockerExecutor("bitnami/git:latest", pull=True)
     git.exec("git init")

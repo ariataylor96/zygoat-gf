@@ -1,5 +1,5 @@
 General:
- - [ ] Abstract resource file injection into single function, DRY
+ - [X] Abstract resource file injection into single function, DRY
 
 Backend:
  - [ ] Add django-environ and configuration for that
