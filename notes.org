@@ -1,11 +1,12 @@
 General:
  - [X] Abstract resource file injection into single function, DRY
+ - [X] Dynamically pull and create gitignore file
 
 Backend:
  - [ ] Add django-environ and configuration for that
    - Probably not redbaron again? Maybe a semantic django app
- - [-] Setup black
-   - [ ] Reformat project
+ - [X] Setup black
+   - [X] Reformat project
    - [X] Add TOML configuration
      - [X] Make sure it's pretty formatted
 
@@ -27,3 +28,8 @@ Testing:
  - [ ] Test building the prod images
    - [ ] Frontend
    - [ ] Backend
+ - [ ] plans/
+   - [ ] backend/
+     - [ ] black.py
+     - [ ] docker.py
+     - [ ] gunicorn.py

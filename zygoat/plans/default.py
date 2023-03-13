@@ -1,6 +1,5 @@
-from zygoat.plans import frontend, backend
+from zygoat.plans import frontend, backend, git
 from zygoat.utils import inject_resource_file
-from zygoat.executors import DockerExecutor
 
 from loguru import logger as log
 
@@ -8,6 +7,7 @@ from loguru import logger as log
 _plans = [
     frontend,
     backend,
+    git,
 ]
 
 _injected_files = [
@@ -23,6 +23,3 @@ def entrypoint(*args, **kwargs):
     for file_name in _injected_files:
         log.info(f"Injecting {file_name}")
         inject_resource_file(file_name)
-
-    git = DockerExecutor("bitnami/git:latest", pull=True)
-    git.exec("git init")
