@@ -4,10 +4,10 @@ General:
 Backend:
  - [ ] Add django-environ and configuration for that
    - Probably not redbaron again? Maybe a semantic django app
- - [ ] Setup black
+ - [-] Setup black
    - [ ] Reformat project
-   - [ ] Add TOML configuration
-     - Make sure it's pretty formatted
+   - [X] Add TOML configuration
+     - [X] Make sure it's pretty formatted
 
 Frontend:possible
  - [ ] Clean up the generated project

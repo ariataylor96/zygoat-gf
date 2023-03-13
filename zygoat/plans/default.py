@@ -21,7 +21,7 @@ def entrypoint(*args, **kwargs):
         plan.entrypoint(*args, **kwargs)
 
     for file_name in _injected_files:
-        log.debug(f"Injecting {file_name}")
+        log.info(f"Injecting {file_name}")
         inject_resource_file(file_name)
 
     git = DockerExecutor("bitnami/git:latest", pull=True)

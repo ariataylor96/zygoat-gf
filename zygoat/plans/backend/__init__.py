@@ -5,6 +5,7 @@ from zygoat.executors import DockerExecutor
 
 from .docker import inject_dockerfiles
 from .gunicorn import inject_gunicorn_conf
+from .black import inject_black_config, reformat_project
 
 
 BACKEND = "backend"
@@ -25,3 +26,8 @@ def entrypoint(*args, **kwargs):
 
     inject_dockerfiles(BACKEND)
     inject_gunicorn_conf(BACKEND)
+
+    # Fix permissions in advance of the GC sweep
+    python.clean_perms()
+    inject_black_config(BACKEND)
+    reformat_project(python)

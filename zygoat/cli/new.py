@@ -23,10 +23,6 @@ def new(name, plan):
     with use_dir(name):
         plan(name=name)
 
-    # Get a vertical break first
-    for _ in range(2):
-        print()
-
     log.info(f"Your project {name} is ready! Happy hacking!")
 
 
