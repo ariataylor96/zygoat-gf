@@ -10,7 +10,7 @@ Backend:
    - [X] Add TOML configuration
      - [X] Make sure it's pretty formatted
 
-Frontend:possible
+Frontend:
  - [ ] Clean up the generated project
    - [ ] Remove useless API paths
    - [ ] Default assets

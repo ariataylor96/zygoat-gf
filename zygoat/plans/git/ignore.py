@@ -9,7 +9,7 @@ _queries = [
     "python",
     "node",
     ("nextjs", "frontend"),
-    ("python", "backend"),
+    ("django", "backend"),
 ]
 _file_name = ".gitignore"
 

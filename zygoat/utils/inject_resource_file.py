@@ -6,4 +6,10 @@ from .resource_file_contents import resource_file_contents
 
 
 def inject_resource_file(name: Union[str, os.PathLike]) -> None:
+    """
+    Places a file from the resource directory at its corresponding path in the project.
+
+    :param name: Path to the file to copy
+    """
+
     inject_file_contents(name, resource_file_contents(name))
