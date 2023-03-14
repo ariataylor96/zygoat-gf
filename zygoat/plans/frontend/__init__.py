@@ -3,7 +3,7 @@ import os
 import shutil
 
 from zygoat.executors import DockerExecutor
-from zygoat.utils import use_dir
+from zygoat.utils import use_dir, inject_resource_file
 from .docker import inject_dockerfiles
 
 FRONTEND = "frontend"
@@ -42,3 +42,4 @@ def entrypoint(*args, name=None, **kwargs):
         os.makedirs("public")
 
     inject_dockerfiles(FRONTEND)
+    inject_resource_file(os.path.join(FRONTEND, ".eslintrc.js"))

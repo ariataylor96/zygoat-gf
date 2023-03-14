@@ -11,9 +11,9 @@ Backend:
      - [X] Make sure it's pretty formatted
 
 Frontend:
- - [ ] Clean up the generated project
-   - [ ] Remove useless API paths
-   - [ ] Default assets
+ - [X] Clean up the generated project
+   - [X] Remove useless API paths
+   - [X] Default assets
 
  - [ ] Prettier
    - [ ] Add package scripts to reformat project
