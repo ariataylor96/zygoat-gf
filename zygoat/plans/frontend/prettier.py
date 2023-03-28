@@ -1,9 +1,8 @@
-import json
 import os
 from typing import Union
 from zygoat.executors import DockerExecutor
 from loguru import logger as log
-from zygoat.utils import inject_resource_file, find_nearest, use_dir
+from zygoat.utils import inject_resource_file, use_dir
 from .utils import add_package_script
 
 
