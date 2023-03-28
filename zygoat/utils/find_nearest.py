@@ -9,7 +9,7 @@ def find_nearest(file_name: str) -> Optional[Path]:
     Locates the nearest instance of a file, in the current or parent directory.
 
     :param file_name: The file_name to search for
-    :return: Absolute path to a match, or None
+    :return: pathlib.Path on a match, or None
     """
 
     match = None
