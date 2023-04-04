@@ -18,7 +18,7 @@ Frontend:
  - [X] Prettier
    - [X] Add package scripts to reformat project
    - [X] .prettierrc
- - [ ] Eslint
+ - [X] Eslint
    - See what the NextJS defaults are, try to customize those if possible
  - [X] Clean up the generated project
    - [X] Remove useless API paths

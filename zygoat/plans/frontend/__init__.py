@@ -3,9 +3,10 @@ import os
 import shutil
 
 from zygoat.executors import DockerExecutor
-from zygoat.utils import use_dir, inject_resource_file
+from zygoat.utils import use_dir
 from .docker import inject_dockerfiles
 from .prettier import inject_prettier
+from .eslint import inject_eslint
 
 FRONTEND = "frontend"
 _boilerplate_paths = ["public", "styles", "pages/api", "pages/index.js", "pages/_app.js"]
@@ -52,5 +53,5 @@ def entrypoint(*args, name=None, **kwargs):
         os.makedirs("public")
 
     inject_dockerfiles(FRONTEND)
-    inject_resource_file(os.path.join(FRONTEND, ".eslintrc.js"))
     inject_prettier(node, FRONTEND)
+    inject_eslint(node, FRONTEND)
