@@ -1,14 +1,14 @@
 import json
 import os
-from typing import Union
 from loguru import logger as log
 from zygoat.utils import find_nearest
+from zygoat.types import PathLike
 
 
 def add_package_script(
     name: str,
     cmd: str,
-    file_name: Union[str, os.PathLike] = "package.json",
+    file_name: PathLike = "package.json",
 ) -> None:
     """
     Adds a package script to the nearest package.json file.

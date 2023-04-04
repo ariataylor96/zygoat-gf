@@ -1,12 +1,13 @@
 import os
-from typing import Union
 from zygoat.executors import DockerExecutor
 from loguru import logger as log
 from zygoat.utils import inject_resource_file, use_dir
 from .utils import add_package_script
 
+from zygoat.types import PathLike
 
-def inject_prettier(node: DockerExecutor, workdir: Union[str, os.PathLike]) -> None:
+
+def inject_prettier(node: DockerExecutor, workdir: PathLike) -> None:
     log.info("Adding prettier dependencies")
     node.exec("pnpm add -D prettier @trivago/prettier-plugin-sort-imports")
 

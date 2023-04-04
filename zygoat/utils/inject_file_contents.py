@@ -1,9 +1,10 @@
+from zygoat.types import PathLike
 from typing import Union
 import os
 
 
 def inject_file_contents(
-    name: Union[str, os.PathLike],
+    name: PathLike,
     contents: Union[str, bytes],
     overwrite: bool = False,
 ) -> None:
