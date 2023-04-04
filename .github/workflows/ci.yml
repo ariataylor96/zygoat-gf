@@ -27,6 +27,20 @@ jobs:
           poetry install --all-extras
       - run: poetry run pytest -rA -m "not slow"
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker-practice/actions-setup-docker@master
+        timeout-minutes: 12
+      - run: |
+          pip install --upgrade pip
+          pip install --upgrade poetry
+          poetry install --all-extras
+      - run: poetry run zygoat new scratch
+      - run: docker build scratch/frontend
+      - run: docker build scratch/backend
+
   e2e:
     runs-on: ubuntu-latest
     steps:

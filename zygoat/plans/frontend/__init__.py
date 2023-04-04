@@ -8,7 +8,7 @@ from .docker import inject_dockerfiles
 from .prettier import inject_prettier
 
 FRONTEND = "frontend"
-_boilerplate_paths = ["public", "styles", "pages/api", "pages/index.js"]
+_boilerplate_paths = ["public", "styles", "pages/api", "pages/index.js", "pages/_app.js"]
 _pnpm_setup = ["npm install -g npm@latest", "npm install -g pnpm"]
 
 

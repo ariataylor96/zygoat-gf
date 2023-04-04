@@ -25,9 +25,9 @@ Frontend:
    - [X] Default assets
 
 Testing:
- - [ ] Test building the prod images
-   - [ ] Frontend
-   - [ ] Backend
+ - [X] Test building the prod images
+   - [X] Frontend
+   - [X] Backend
  - [ ] plans/
    - [ ] backend/
      - [ ] black.py

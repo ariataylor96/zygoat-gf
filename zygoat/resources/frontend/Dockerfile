@@ -5,8 +5,7 @@ RUN npm install -g pnpm
 
 WORKDIR /code
 
-ADD package.json /code/
-ADD pnpm-lock.yaml /code/
+COPY . .
 
 RUN pnpm install
 RUN pnpm run build
