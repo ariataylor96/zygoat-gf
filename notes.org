@@ -15,14 +15,14 @@ Frontend:
    - [X] Remove useless API paths
    - [X] Default assets
 
- - [ ] Prettier
-   - [ ] Add package scripts to reformat project
-   - [ ] .prettierrc
+ - [X] Prettier
+   - [X] Add package scripts to reformat project
+   - [X] .prettierrc
  - [ ] Eslint
    - See what the NextJS defaults are, try to customize those if possible
- - [ ] Clean up the generated project
-   - [ ] Remove useless API paths
-   - [ ] Default assets
+ - [X] Clean up the generated project
+   - [X] Remove useless API paths
+   - [X] Default assets
 
 Testing:
  - [ ] Test building the prod images

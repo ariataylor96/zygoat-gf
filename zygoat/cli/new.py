@@ -33,7 +33,6 @@ def _get_plan(import_path: str) -> Callable:
     if callable(imported):
         return imported
 
-    log.debug(f"{import_path} is not callable, checking for .entrypoint()")
     imported = getattr(imported, "entrypoint")
 
     if imported is None or not callable(imported):
