@@ -3,7 +3,7 @@ General:
  - [X] Dynamically pull and create gitignore file
 
 Backend:
- - [ ] Add django-environ and configuration for that
+ - [X] Add django-environ and configuration for that
    - Probably not redbaron again? Maybe a semantic django app
  - [X] Setup black
    - [X] Reformat project

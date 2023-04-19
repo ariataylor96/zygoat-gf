@@ -6,12 +6,16 @@ from zygoat.executors import DockerExecutor
 from .docker import inject_dockerfiles
 from .gunicorn import inject_gunicorn_conf
 from .black import inject_black_config, reformat_project
+from .settings import inject_env_configuration
+
+import shlex
 
 
 BACKEND = "backend"
+PROD_DEPS = ["Django", "gunicorn", "django-environ"]
 
 
-def entrypoint(*args, attach=False, **kwargs):
+def entrypoint(*args, attach=False, **kwargs) -> None:
     log.info("Initializing the backend project")
     os.makedirs(BACKEND)
 
@@ -20,7 +24,7 @@ def entrypoint(*args, attach=False, **kwargs):
     python.exec_all(
         "pip install --upgrade pip poetry",
         "poetry init -n --name=backend",
-        "poetry add Django gunicorn",
+        "poetry add {}".format(shlex.join(PROD_DEPS)),
         "poetry run django-admin startproject backend .",
     )
 
@@ -31,3 +35,4 @@ def entrypoint(*args, attach=False, **kwargs):
     python.clean_perms()
     inject_black_config(BACKEND)
     reformat_project(python)
+    inject_env_configuration(BACKEND)
