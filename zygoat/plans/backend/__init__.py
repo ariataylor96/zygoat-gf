@@ -11,12 +11,12 @@ from .black import inject_black_config, reformat_project
 BACKEND = "backend"
 
 
-def entrypoint(*args, **kwargs):
+def entrypoint(*args, attach=False, **kwargs):
     log.info("Initializing the backend project")
     os.makedirs(BACKEND)
 
     # TODO: Take these values from params/config
-    python = DockerExecutor("python:latest", pull=True, workdir=BACKEND)
+    python = DockerExecutor("python:latest", pull=True, workdir=BACKEND, attach=attach)
     python.exec_all(
         "pip install --upgrade pip poetry",
         "poetry init -n --name=backend",

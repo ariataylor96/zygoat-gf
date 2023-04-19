@@ -13,7 +13,7 @@ _boilerplate_paths = ["public", "styles", "pages/api", "pages/index.js", "pages/
 _pnpm_setup = ["npm install -g npm@latest", "npm install -g pnpm"]
 
 
-def entrypoint(*args, name=None, **kwargs):
+def entrypoint(*args, attach=False, **kwargs):
     log.info("Initializing the frontend project")
     os.makedirs(FRONTEND)
 
@@ -22,10 +22,11 @@ def entrypoint(*args, name=None, **kwargs):
         "node:latest",
         workdir=".",
         pull=True,
+        attach=attach,
     )
     node.exec_all(
         *_pnpm_setup,
-        """pnpm create next-app --js --use-pnpm --eslint --no-experimental-app --no-src-dir --import-alias "@/*" frontend""",
+        """pnpm create next-app --no-tailwind --js --use-pnpm --eslint --no-experimental-app --no-src-dir --import-alias "@/*" frontend""",
         "rm -rf .pnpm-store",
     )
 

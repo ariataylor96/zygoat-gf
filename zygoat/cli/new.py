@@ -14,14 +14,19 @@ from zygoat.utils import use_dir
     default="zygoat.plans:default",
     help="Import path to the default plan module to execute - e.g. zygoat.plans:default",
 )
-def new(name, plan):
+@click.option(
+    "--attach/--no-attach",
+    default=False,
+    help="Show output from the project generation containers. Useful for debugging.",
+)
+def new(name: str, plan: str, attach: bool) -> None:
     log.info(f"Creating {name}")
     os.makedirs(name)
 
     plan = _get_plan(plan)
 
     with use_dir(name):
-        plan(name=name)
+        plan(name=name, attach=attach)
 
     log.info(f"Your project {name} is ready! Happy hacking!")
 
