@@ -26,7 +26,7 @@ def entrypoint(*args, attach=False, **kwargs):
     )
     node.exec_all(
         *_pnpm_setup,
-        """pnpm create next-app --no-tailwind --js --use-pnpm --eslint --no-experimental-app --no-src-dir --import-alias "@/*" frontend""",
+        """pnpm create next-app --no-tailwind --js --use-pnpm --eslint --no-app --no-src-dir --import-alias "@/*" frontend""",
         "rm -rf .pnpm-store",
     )
 
@@ -45,6 +45,12 @@ def entrypoint(*args, attach=False, **kwargs):
     with use_dir(FRONTEND):
         log.info("Deleting NextJS boilerplate")
         for path in _boilerplate_paths:
+            if not os.path.exists(path):
+                log.critical(
+                    f"Couldn't locate {path}! create-next-app likely failed, try rerunning with --attach"
+                )
+                exit(1)
+
             if os.path.isdir(path):
                 shutil.rmtree(path)
             else:

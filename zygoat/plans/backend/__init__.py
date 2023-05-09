@@ -12,7 +12,32 @@ import shlex
 
 
 BACKEND = "backend"
-PROD_DEPS = ["Django", "gunicorn", "django-environ"]
+
+PROD_DEPS = [
+    "Django",
+    "gunicorn",
+    "django-environ",
+    "zygoat-django",
+    "djangorestframework",
+    "djangorestframework-camel-case",
+]
+
+DEV_DEPS = [
+    "flake8",
+    "black",
+    "flake8-black",
+    "pytest",
+    "bandit",
+    "flake8-mock",
+    "flake8-commas",
+    "flake8-quotes",
+    "flake8-debugger",
+    "flake8-builtins",
+    "flake8-deprecated",
+    "flake8-comprehensions",
+    "pytest-django",
+    "pytest-cov",
+]
 
 
 def entrypoint(*args, attach=False, **kwargs) -> None:
@@ -25,6 +50,7 @@ def entrypoint(*args, attach=False, **kwargs) -> None:
         "pip install --upgrade pip poetry",
         "poetry init -n --name=backend",
         "poetry add {}".format(shlex.join(PROD_DEPS)),
+        "poetry add --group dev {}".format(shlex.join(DEV_DEPS)),
         "poetry run django-admin startproject backend .",
     )
 

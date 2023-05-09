@@ -5,6 +5,7 @@ General:
 Backend:
  - [X] Add django-environ and configuration for that
    - Probably not redbaron again? Maybe a semantic django app
+   - I lied, redbaron again. Way less cognitive overhead that way.
  - [X] Setup black
    - [X] Reformat project
    - [X] Add TOML configuration

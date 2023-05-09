@@ -9,7 +9,6 @@ _SETTINGS_PATH = os.path.join("backend", "backend", "settings.py")
 
 def inject_env_configuration(workdir: PathLike) -> None:
     settings_data = None
-
     with open(_SETTINGS_PATH) as f:
         settings_data = RedBaron(f.read())
 
